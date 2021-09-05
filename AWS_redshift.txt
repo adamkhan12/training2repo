@@ -8,7 +8,7 @@
 8. drivers : https://docs.aws.amazon.com/redshift/latest/mgmt/configure-jdbc-connection.html#download-jdbc-driver
 
 
-
+-----------------------------------------------------
 
 1. create subnet group
 2. create cluster
