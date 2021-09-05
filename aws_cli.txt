@@ -1,0 +1,57 @@
+https://www.youtube.com/watch?v=stMvtWhBE8I&list=PLnKRMdDSbUHCN1lrfgVYsrZu1vhs4FZSk
+
+For EC2:
+
+create ec2 instances:       aws ec2 run-instances --image-id ami-0742b4e673072066f --count 2 --instance-type t2.micro --key-name keypair --security-group-ids sg-0fadb078625ae33d3 --subnet-id subnet-0db41c8be0ea4ac98
+
+Tags:                       aws ec2 create-tags --resources i-0f83f6439e21053d2 --tags Key=Name,Value=webserver
+List of instances with Tags: aws ec2 describe-instances --filters "Name=tag:Name,Values=webserver"
+
+aws ec2 describe-instances --filter "resource-type=instance" --filter "resource-id=$(ec2-metadata -i | cut -d ' ' -f2)" --filter "key=Name" | cut -f5
+
+List of Ec2-instances:     aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" --query "Reservations[].Instances[].InstanceId"
+list of instances with Ami : aws ec2 describe-instances --filters "Name=image-id,Values=ami-x0123456,ami-y0123456,ami-z0123456"
+
+Terminate instance  :        aws ec2 terminate-instances --instance-ids i-5203422c i-03577805d26a73ac6
+stopping instances :         aws ec2 stop-instances --instance-ids i-038aed19388fb5b96 i-03577805d26a73ac6
+starting instances :         aws ec2 start-instances --instance-ids i-04b19f42270f72ec5 i-03577805d26a73ac6
+
+
+
+--dry-run | --no-dry-run (boolean)
+--force | --no-force (boolean)
+--hibernate | --no-hibernate (boolean)
+
+
+
+
+For S3:
+
+Creating Buckets(make):
+aws s3 mb s3://sampleadambucket
+
+Listing buckets:
+aws s3 ls
+adamkhan.xyz
+
+
+Listing buckets and objects:
+aws s3 ls s3://adamkhan.xyz
+
+To remove objects in bucket:
+aws s3 rm s3://adamkhan.xyz/index.html    (single object)
+aws s3 rm s3://adamkhan.xyz --recursive   (All Objects)
+
+Removing Buckets(remove):
+To remove objects under bucket: aws s3 rb s3://cf-templates-1tm874ygpn3i6-us-east-1 --force
+
+
+aws s3 cp C:"\Users\ak255120\OneDrive - Teradata\Desktop\retest"\2005218_F_Questions.pdf s3://adamkhantest/
+aws s3 cp C:"\Users\ak255120\OneDrive - Teradata\Desktop\retest"\ s3://adamkhantest/ --recursive
+aws s3 sync C:"\Users\ak255120\OneDrive - Teradata\Desktop\retest"\ s3://adamkhantest/
+
+
+
+
+aws iam deactivate-mfa-device
+
