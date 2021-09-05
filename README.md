@@ -1,1 +1,4 @@
 # training2repo
+
+Token: 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
+token2: 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
